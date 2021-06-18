@@ -1,7 +1,19 @@
+import Button from 'react-bootstrap/Button';
+import WarningTicker from '../WarningTicker';
+import Map from '../Map';
+
 const LandingPage = () => {
     return(
         <div>
-            <h1>landing page</h1>
+            <WarningTicker />
+            <div>
+                <Button variant="primary">Alerts List</Button>
+                <div>
+                    <Button variant="primary">Checklist</Button>{' '}
+                    <Button variant="primary">Evacuation</Button>
+                </div>
+            </div>
+            <Map />
         </div>
     )
 }
