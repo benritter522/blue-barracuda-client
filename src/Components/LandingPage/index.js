@@ -8,9 +8,9 @@ const LandingPage = () => {
             <WarningTicker />
             <Map />
             <div>
-                <Button variant="primary">Alerts List</Button>{' '}
-                <Button variant="primary">Checklist</Button>{' '}
-                <Button variant="primary">Evacuation</Button>
+                <Button variant="primary">Alerts</Button>{' '}
+                <Button variant="primary">Ready to Evacuate</Button>{' '}
+                <Button variant="primary">Checklist</Button>
             </div>
         </div>
     )
