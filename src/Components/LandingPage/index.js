@@ -6,14 +6,12 @@ const LandingPage = () => {
     return(
         <div>
             <WarningTicker />
-            <div>
-                <Button variant="primary">Alerts List</Button>
-                <div>
-                    <Button variant="primary">Checklist</Button>{' '}
-                    <Button variant="primary">Evacuation</Button>
-                </div>
-            </div>
             <Map />
+            <div>
+                <Button variant="primary">Alerts List</Button>{' '}
+                <Button variant="primary">Checklist</Button>{' '}
+                <Button variant="primary">Evacuation</Button>
+            </div>
         </div>
     )
 }
