@@ -2,6 +2,7 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 
 import Navbar from './Components/Navbar/index.js';
+import WarningTicker from './Components/WarningTicker';
 import LandingPage from './Components/LandingPage';
 import Checklist from './Components/Checklist';
 import EvacuationZones from './Components/EvacuationZones';
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className="App">
         <Navbar />
+        <WarningTicker />
 
         <Switch>
           <Route exact path="/" component={LandingPage} />
