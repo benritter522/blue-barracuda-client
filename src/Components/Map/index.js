@@ -1,18 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, Circle, InfoWindow } from '@react-google-maps/api';
 
+const sampleData = require('../jsonformatter.json');
+// console.log(sampleData.current_latitude)
 
-const containerStyle = {
+const mapContainerStyle = {
     width: '90vw',
     height: '60vh',
     alignSelf: 'center',
     margin: '0 auto'
 };
 // Talahassee
-const center = {
+const mapCenter = {
     lng: -84.2807,
     lat: 30.4383
 };
+const circleOptions = {
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35,
+    clickable: false,
+    draggable: false,
+    editable: false,
+    visible: true,
+    radius: 140000,
+    zIndex: 1
+}
 
 const MapComponent = (props) => {
 
@@ -64,8 +79,8 @@ const MapComponent = (props) => {
 
     return isLoaded ? (
         <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
+            mapContainerStyle={mapContainerStyle}
+            center={mapCenter}
             zoom={5}
             onLoad={onLoad}
             onUnmount={onUnmount}
@@ -78,6 +93,10 @@ const MapComponent = (props) => {
                     />
                 ) : <></>
             }
+            <Circle 
+                center={{lat: sampleData.current_latitude, lng: sampleData.current_longitude}}
+                options={circleOptions}
+            />
         </GoogleMap>
     ) : <p>Loading...</p>
 }
