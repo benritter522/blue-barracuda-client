@@ -70,10 +70,8 @@ const MapComponent = (props) => {
 
     useEffect(() => {
         // fetchLocations();
-        // props.getUserLocation();
-        // console.log(props.userLat, props.userLng, props.userLocationStatus)
 
-    }, [props]);
+    }, []);
 
     // icons?
 
