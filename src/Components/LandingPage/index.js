@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
-import Map from '../Map';
+import Map from './Map';
 
 const LandingPage = () => {
 

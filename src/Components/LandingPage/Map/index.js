@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, Circle, InfoWindow } from '@react-google-maps/api';
 
-const sampleData = require('../jsonformatter.json');
+const sampleData = require('../../jsonformatter.json');
 // console.log(sampleData.current_latitude)
 
 const mapContainerStyle = {
