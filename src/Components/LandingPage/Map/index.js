@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, Circle } from '@react-google-maps/api';
 
-const sampleHurricane = require('../../../Data/jsonformatter.json');
+const sampleHurricane = require('../../../Data/hurricane.json');
 
 const mapContainerStyle = {
     width: '90vw',
@@ -24,7 +24,7 @@ const circleOptions = {
     draggable: false,
     editable: false,
     visible: true,
-    radius: 140000,
+    radius: sampleHurricane.radius*1609.34,
     zIndex: 1
 }
 
