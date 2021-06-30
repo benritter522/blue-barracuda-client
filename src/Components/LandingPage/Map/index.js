@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, Circle } from '@react-google-maps/api';
 
 const sampleHurricane = require('../../../Data/jsonformatter.json');
-const sampleShelters = require('../../../Data/shelters.json');
 
 const mapContainerStyle = {
     width: '90vw',
@@ -31,34 +30,13 @@ const circleOptions = {
 
 const MapComponent = (props) => {
 
-    const [shelters, setShelters] = useState(sampleShelters);
-    console.log(shelters);
-    // make shelters an array of objects--each with name, lat, lng, and capacity:
-        // shelters = [
-            // {name: 'happy bunny shelter', lat: 5, lng: 6, cap: .75},
-            // {name: 'angry kitty shelter', lat: 5, lng: 6, cap: .75},
-            // etc
-        // ]
-
-    // const fetchShelters = async () => {
-    //     try {
-    //         const response = await fetch('URL'); //backend URL
-    //         const data = await response.json();
-    //         setShelters(data);
-    //     }
-    //     catch(error) {
-    //         console.error(error);
-    //     }
-    // }
-
-
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY
     });
 
     const [map, setMap] = useState(null);
-    console.log(map);
+    // console.log(map);
     
     const onLoad = React.useCallback(function callback(map) {
         // const bounds = new window.google.maps.LatLngBounds();
@@ -94,9 +72,9 @@ const MapComponent = (props) => {
                 ) : <></>
             }
             {
-                shelters ?
+                props.shelters ?
                 (
-                    shelters.map((item, index) => {
+                    props.shelters.map((item, index) => {
                         return(
                             <Marker 
                                 key={index}
