@@ -1,8 +1,10 @@
 
 const SingleShelter = (props) => {
     return(
-        <div>
-            single shelter
+        <div style={{borderBottom: '1px solid black'}}>
+            <p>{props.name}</p>
+            <p>{props.address}</p>
+            <a href={`https://www.google.com/maps/search/?api=1&query=${props.latitude},${props.longitude}`}>View on Google Maps</a>
         </div>
     )
 }
