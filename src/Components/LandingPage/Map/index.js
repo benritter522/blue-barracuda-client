@@ -31,7 +31,8 @@ const circleOptions = {
 
 const MapComponent = (props) => {
 
-    // const [shelters, setShelters] = useState([]);
+    const [shelters, setShelters] = useState(sampleShelters);
+    console.log(shelters);
     // make shelters an array of objects--each with name, lat, lng, and capacity:
         // shelters = [
             // {name: 'happy bunny shelter', lat: 5, lng: 6, cap: .75},
@@ -90,6 +91,21 @@ const MapComponent = (props) => {
                     <Marker
                         position={{lat: props.userLat, lng: props.userLng}}
                     />
+                ) : <></>
+            }
+            {
+                shelters ?
+                (
+                    shelters.map((item, index) => {
+                        return(
+                            <Marker 
+                                key={index}
+                                position={{lat: item.geometry.y, lng: item.geometry.x}}
+                                icon={{url: 'https://res.cloudinary.com/bitingrent/image/upload/v1625070383/safespot/safespot-shelterMarker_awhbaz.png', scaledSize: {width: 20, height: 20}}}
+                            />
+
+                        )
+                    })
                 ) : <></>
             }
             <Circle 
