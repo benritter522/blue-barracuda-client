@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, useJsApiLoader, Marker, Circle, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, Circle } from '@react-google-maps/api';
 
-const sampleData = require('../../jsonformatter.json');
-// console.log(sampleData.current_latitude)
+const sampleHurricane = require('../../../Data/jsonformatter.json');
+const sampleShelters = require('../../../Data/shelters.json');
 
 const mapContainerStyle = {
     width: '90vw',
@@ -57,6 +57,7 @@ const MapComponent = (props) => {
     });
 
     const [map, setMap] = useState(null);
+    console.log(map);
     
     const onLoad = React.useCallback(function callback(map) {
         // const bounds = new window.google.maps.LatLngBounds();
@@ -92,7 +93,7 @@ const MapComponent = (props) => {
                 ) : <></>
             }
             <Circle 
-                center={{lat: sampleData.current_latitude, lng: sampleData.current_longitude}}
+                center={{lat: sampleHurricane.current_latitude, lng: sampleHurricane.current_longitude}}
                 options={circleOptions}
             />
         </GoogleMap>
