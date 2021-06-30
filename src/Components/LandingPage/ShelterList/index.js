@@ -11,6 +11,9 @@ const ShelterList = (props) => {
                             key={index}
                             name={item.attributes.SHELTER_NAME}
                             address={item.attributes.ADDRESS}
+                            city={item.attributes.CITY}
+                            state={item.attributes.STATE}
+                            zip={item.attributes.ZIP}
                             latitude={item.geometry.y}
                             longitude={item.geometry.x}
                         />
