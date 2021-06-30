@@ -54,7 +54,6 @@ const MapComponent = (props) => {
     }, []);
 
     // icons?
-
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={mapContainerStyle}

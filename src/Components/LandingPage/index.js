@@ -5,16 +5,9 @@ import ShelterList from '../LandingPage/ShelterList';
 
 const sampleShelters = require('../../Data/shelters.json');
 
-
 const LandingPage = () => {
 
     const [shelters, setShelters] = useState(sampleShelters);
-    // make shelters an array of objects--each with name, lat, lng, and capacity:
-        // shelters = [
-            // {name: 'happy bunny shelter', lat: 5, lng: 6, cap: .75},
-            // {name: 'angry kitty shelter', lat: 5, lng: 6, cap: .75},
-            // etc
-        // ]
 
     // const fetchShelters = async () => {
     //     try {
@@ -49,7 +42,9 @@ const LandingPage = () => {
     useEffect(() => {
         getUserLocation();
         // console.log(userLat, userLng, userLocationStatus);
-    }, [userLat, userLng, userLocationStatus]);
+    // }, [userLat, userLng, userLocationStatus]);
+    }, []);
+
     
     return(
         <div>
@@ -64,9 +59,15 @@ const LandingPage = () => {
                 shelters={shelters}
             />
             <div>
-                <Button variant="primary">Alerts</Button>{' '}
-                <Button variant="primary">Ready to Evacuate</Button>{' '}
-                <Button variant="primary">Checklist</Button>
+                <div>
+                    <Button variant="primary">Alerts</Button>
+                </div>
+                <div>
+                    <Button variant="primary">Ready to Evacuate</Button>
+                </div>
+                <div>
+                    <Button variant="primary">Checklist</Button>
+                </div>
             </div>
         </div>
     )
