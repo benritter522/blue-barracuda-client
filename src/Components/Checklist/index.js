@@ -30,8 +30,8 @@ const Checklist = () => {
                 {
                     basicKit.map((item, index) => {
                         return(
-                            <div key={index}>
-                                <p style={{justifyContent: 'left'}}>
+                            <div className="checkList" key={index}>
+                                <p /*style={{justifyContent: 'left'}}*/>
                                     <Checkbox 
                                         color="primary"
                                         inputProps={{ 'aria-label' : 'secondary checkbox'}}
