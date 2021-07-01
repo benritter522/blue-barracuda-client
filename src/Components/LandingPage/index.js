@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React/*, { useState, useEffect } */ from 'react';
 import Button from 'react-bootstrap/Button';
 import Map from './Map';
 import ShelterList from '../LandingPage/ShelterList';
@@ -7,8 +7,9 @@ const sampleShelters = require('../../Data/shelters.json');
 
 const LandingPage = () => {
 
-    const [shelters, setShelters] = useState(sampleShelters);
-
+    const shelters = sampleShelters;
+    // uncomment below for live data to be updated by state
+    // const [shelters, setShelters] = useState(sampleShelters);
     // const fetchShelters = async () => {
     //     try {
     //         const response = await fetch('URL'); //backend URL
@@ -20,42 +21,49 @@ const LandingPage = () => {
     //     }
     // }
 
-    const [userLat, setUserLat] = useState(null);
-    const [userLng, setUserLng] = useState(null);
-    const [userLocationStatus, setUserLocationStatus] = useState(null);
+    // Placeholder Florida User Location
+    const userLat = 27.76456198936397;
+    const userLng = -82.63390142275888;
 
-    const getUserLocation = () => {
-        if (!navigator.geolocation) {
-            setUserLocationStatus('Geolocation is not supported by your browser');
-        } else {
-            setUserLocationStatus('Locating...');
-            navigator.geolocation.getCurrentPosition((position) => {
-                setUserLocationStatus(null);
-                setUserLat(position.coords.latitude);
-                setUserLng(position.coords.longitude);
-            }, () => {
-                setUserLocationStatus('Unable to retrieve your location');
-            });
-        }
-    }
+    // Uncomment below and in useEffect for real user location
 
-    useEffect(() => {
-        getUserLocation();
+    // const [userLat, setUserLat] = useState(null);
+    // const [userLng, setUserLng] = useState(null);
+    // const [userLocationStatus, setUserLocationStatus] = useState(null);
+    // const getUserLocation = () => {
+    //     if (!navigator.geolocation) {
+    //         setUserLocationStatus('Geolocation is not supported by your browser');
+    //     } else {
+    //         setUserLocationStatus('Locating...');
+    //         navigator.geolocation.getCurrentPosition((position) => {
+    //             setUserLocationStatus(null);
+    //             setUserLat(position.coords.latitude);
+    //             setUserLng(position.coords.longitude);
+    //         }, () => {
+    //             setUserLocationStatus('Unable to retrieve your location');
+    //         });
+    //     }
+    // }
+
+    // useEffect(() => {
+        // getUserLocation();
         // console.log(userLat, userLng, userLocationStatus);
     // }, [userLat, userLng, userLocationStatus]);
-    }, []);
+    // }, []);
 
     
     return(
         <div>
             <Map 
-                getUserLocation={getUserLocation}
+                // getUserLocation={getUserLocation}
+                // userLocationStatus={userLocationStatus}
                 userLat={userLat} 
                 userLng={userLng} 
-                userLocationStatus={userLocationStatus}
                 shelters={shelters}
             />
             <ShelterList 
+                userLat={userLat} 
+                userLng={userLng}
                 shelters={shelters}
             />
             <div>

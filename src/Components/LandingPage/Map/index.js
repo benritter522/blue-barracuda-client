@@ -36,7 +36,7 @@ const MapComponent = (props) => {
     });
 
     const [map, setMap] = useState(null);
-    // console.log(map);
+    console.log('map:', map);
     
     const onLoad = React.useCallback(function callback(map) {
         // const bounds = new window.google.maps.LatLngBounds();
@@ -71,16 +71,17 @@ const MapComponent = (props) => {
                 ) : <></>
             }
             {
-                props.shelters ?
+                props.shelters && props.userLat && props.userLng ?
                 (
                     props.shelters.map((item, index) => {
                         return(
-                            <Marker 
-                                key={index}
-                                position={{lat: item.geometry.y, lng: item.geometry.x}}
-                                icon={{url: 'https://res.cloudinary.com/bitingrent/image/upload/v1625070383/safespot/safespot-shelterMarker_awhbaz.png', scaledSize: {width: 20, height: 20}}}
-                            />
-
+                            <div key={item.attributes.OBJECTID.toString()}>
+                                <Marker 
+                                    
+                                    position={{lat: item.geometry.y, lng: item.geometry.x}}
+                                    icon={{url: 'https://res.cloudinary.com/bitingrent/image/upload/v1625070383/safespot/safespot-shelterMarker_awhbaz.png', scaledSize: {width: 20, height: 20}}}
+                                />
+                            </div>
                         )
                     })
                 ) : <></>
