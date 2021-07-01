@@ -153,7 +153,7 @@
     "attributes": {
         "OBJECTID": 89594,
         "SHELTER_ID": 365088,
-        "SHELTER_NAME": "Cooling Center-Orville Rescue Mission (daily 11a-6p, temp 100+ thru July 5)",
+        "SHELTER_NAME": "Cooling Center-Orville Rescue Mission",
         "ADDRESS": "4250 Lincoln Blvd",
         "CITY": "Oroville",
         "STATE": "CA",
@@ -243,7 +243,7 @@
     "attributes": {
         "OBJECTID": 89597,
         "SHELTER_ID": 365087,
-        "SHELTER_NAME": "Cooling Center-Wingspan Event Ctr, WA County Fairgrounds ",
+        "SHELTER_NAME": "Cooling Center-Wingspan Event Ctr, WA County Fairgrounds",
         "ADDRESS": "801 NE 34th Ave",
         "CITY": "Hillsboro ",
         "STATE": "OR",
@@ -273,7 +273,7 @@
     "attributes": {
         "OBJECTID": 89598,
         "SHELTER_ID": 365092,
-        "SHELTER_NAME": "Cooling Center-Molalla Hope Center (daily 1-8p)",
+        "SHELTER_NAME": "Cooling Center-Molalla Hope Center",
         "ADDRESS": "315 Kennel Ave",
         "CITY": "Molalla ",
         "STATE": "OR",
@@ -303,7 +303,7 @@
     "attributes": {
         "OBJECTID": 89599,
         "SHELTER_ID": 365079,
-        "SHELTER_NAME": "Cooling Center-Depot Park (daily 12p-8p, temp 100+)",
+        "SHELTER_NAME": "Cooling Center-Depot Park",
         "ADDRESS": "431 Cedar Street",
         "CITY": "Chico",
         "STATE": "CA",
@@ -333,7 +333,7 @@
     "attributes": {
         "OBJECTID": 89600,
         "SHELTER_ID": 365080,
-        "SHELTER_NAME": "Cooling Center-Shasta Lake City Community Center (6/26-6/29)",
+        "SHELTER_NAME": "Cooling Center-Shasta Lake City Community Center",
         "ADDRESS": "4499 Main Street",
         "CITY": "Shasta Lake City",
         "STATE": "CA",

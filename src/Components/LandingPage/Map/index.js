@@ -30,7 +30,7 @@ const circleOptions = {
 
 const MapComponent = (props) => {
 
-    const { isLoaded } = useJsApiLoader({
+    const { isLoaded, loadError } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY
     });
@@ -50,10 +50,16 @@ const MapComponent = (props) => {
 
     useEffect(() => {
         // fetchLocations();
+        if(isLoaded) {
+            props.setMapLoaded(true);
+        }
+    }, [isLoaded, props]);
 
-    }, []);
-
-    // icons?
+    if(loadError) {
+        props.setMapLoadError(true);
+        return <div>Map cannot be loaded right now. Sorry!</div>
+    } 
+    
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={mapContainerStyle}
@@ -73,11 +79,10 @@ const MapComponent = (props) => {
             {
                 props.shelters && props.userLat && props.userLng ?
                 (
-                    props.shelters.map((item, index) => {
+                    props.shelters.map((item) => {
                         return(
                             <div key={item.attributes.OBJECTID.toString()}>
                                 <Marker 
-                                    
                                     position={{lat: item.geometry.y, lng: item.geometry.x}}
                                     icon={{url: 'https://res.cloudinary.com/bitingrent/image/upload/v1625070383/safespot/safespot-shelterMarker_awhbaz.png', scaledSize: {width: 20, height: 20}}}
                                 />

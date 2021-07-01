@@ -1,4 +1,4 @@
-import React/*, { useState, useEffect } */ from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Map from './Map';
 import ShelterList from '../LandingPage/ShelterList';
@@ -6,6 +6,9 @@ import ShelterList from '../LandingPage/ShelterList';
 const sampleShelters = require('../../Data/shelters.json');
 
 const LandingPage = () => {
+
+    const [mapLoaded, setMapLoaded] = useState(false);
+    const [mapLoadError, setMapLoadError] = useState(false);
 
     const shelters = sampleShelters;
     // uncomment below for live data to be updated by state
@@ -55,6 +58,10 @@ const LandingPage = () => {
     return(
         <div>
             <Map 
+                mapLoaded={mapLoaded}
+                setMapLoaded={setMapLoaded}
+                mapLoadError={mapLoadError}
+                setMapLoadError={setMapLoadError}
                 // getUserLocation={getUserLocation}
                 // userLocationStatus={userLocationStatus}
                 userLat={userLat} 
@@ -62,6 +69,8 @@ const LandingPage = () => {
                 shelters={shelters}
             />
             <ShelterList 
+                mapLoaded={mapLoaded}
+                mapLoadError={mapLoadError}
                 userLat={userLat} 
                 userLng={userLng}
                 shelters={shelters}

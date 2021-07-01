@@ -1,14 +1,16 @@
-import SingleShelter from './SingleShelter';
+import React from 'react';
+
 import { DistanceMatrixService } from '@react-google-maps/api';
+import SingleShelter from './SingleShelter';
 
 const ShelterList = (props) => {
-    // console.log(props.shelters[1].attributes.city)
-    return(
+
+    return props.mapLoaded ? (
         <div style={{width: '90%', margin: '0 auto'}}>
             {
                 props.userLat && props.userLng ? 
                 (
-                    props.shelters.map((item) => {
+                    props.shelters.map((item, index) => {
                         return(
                             <div key={item.attributes.SHELTER_ID.toString()}>
                                 <DistanceMatrixService
@@ -17,11 +19,14 @@ const ShelterList = (props) => {
                                         origins: [{lat: props.userLat, lng: props.userLng}],
                                         travelMode: "DRIVING",
                                     }}
-                                    callback = {(response) => {
-                                        item.response = response;
-                                        console.log(item.response);
+                                    callback = { async (response) => {
+                                        // item.distance = response.rows[0].elements[0].distance;
+                                        // item.duration = response.rows[0].elements[0].duration;
+                                        item.response = await response;
+                                        console.log(`item: ${index}`, item);
                                     }}
                                 />
+
                                 <SingleShelter 
                                     name={item.attributes.SHELTER_NAME}
                                     address={item.attributes.ADDRESS}
@@ -29,9 +34,10 @@ const ShelterList = (props) => {
                                     state={item.attributes.STATE}
                                     zip={item.attributes.ZIP}
                                     latitude={item.geometry.y}
-                                    longitude={item.geometry.x}
-                                    distance={item.response.rows[0].elements[0].distance.value}
-                                    duration={item.response.rows[0].elements[0].duration.text}
+                                    longitude={item.geometry.x} 
+                                    response={item.response}
+                                    // distance={item.distance.value}
+                                    // duration={item.duration.text}
                                 />
                             </div>
                         )
@@ -39,7 +45,7 @@ const ShelterList = (props) => {
                 ) : <></>
             }
         </div>
-    )
+    ) : <p>Loading...</p>
 }
 
 export default ShelterList;
