@@ -16,4 +16,8 @@
 .App-link {
   color: #61dafb;
 }
-
+.checkList{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
