@@ -1,4 +1,9 @@
 
+const sampleHurricane = require('../../Data/hurricane.json');
+console.log(sampleHurricane)
+
+
+
 const Alerts = () => {
     return(
         <div>

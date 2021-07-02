@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React/*, { useState, useEffect }*/ from 'react';
 
 import { DistanceMatrixService } from '@react-google-maps/api';
 import SingleShelter from './SingleShelter';
 
 const ShelterList = (props) => {
 
-    const [newShelters, setNewShelters] = useState([]);
+    // const [newShelters, setNewShelters] = useState([]);
 
-    useEffect(() => {
-        console.log(newShelters);
-    }, [])
+    // useEffect(() => {
+    //     console.log(newShelters);
+    // }, [])
     return props.mapLoaded ? (
         <div style={{width: '90%', margin: '0 auto'}}>
             {
@@ -33,10 +33,22 @@ const ShelterList = (props) => {
                                         //     console.log(error);
                                         // }
                                         item.response = response;
-                                        setNewShelters(...newShelters, item);
+                                        // setNewShelters(...newShelters, item);
                                         // console.log(`item: ${index}`, item);
                                     }}
                                 />
+                                <SingleShelter 
+                                name={item.attributes.SHELTER_NAME}
+                                address={item.attributes.ADDRESS}
+                                city={item.attributes.CITY}
+                                state={item.attributes.STATE}
+                                zip={item.attributes.ZIP}
+                                latitude={item.geometry.y}
+                                longitude={item.geometry.x} 
+                                response={item.response}
+                                // distance={item.distance.value}
+                                // duration={item.duration.text}
+                            />
                             </div>
                         )
                     })

@@ -12,8 +12,10 @@ const SingleShelter = (props) => {
             <div>
                 {/* <p>{Math.round(props.distance*0.000621371)} Miles</p>
                 <p>Driving: {props.duration}</p> */}
-                <p>{Math.round(props.response.rows[0].elements[0].distance.value*0.000621371)} Miles</p>
-                <p>Driving: {props.response.rows[0].elements[0].duration.text}</p>
+                {/* <p>{Math.round(props.response.rows[0].elements[0].distance.value*0.000621371)} Miles</p>
+                <p>Driving: {props.response.rows[0].elements[0].duration.text}</p> */}
+                <p># Miles</p>
+                <p># Days, Hours, Minutes</p>
 
                 <a href={`https://www.google.com/maps/search/?api=1&query=${props.latitude},${props.longitude}`}>View on Google Maps</a>
             </div>
