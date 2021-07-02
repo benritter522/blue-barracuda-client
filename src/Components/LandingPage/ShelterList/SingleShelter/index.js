@@ -1,6 +1,6 @@
 
 const SingleShelter = (props) => {
-    console.log('SingleShelter Props:', props);
+    // console.log('SingleShelter Props:', props);
 
     return(
         <div style={{margin: '0 auto', display: 'flex', flexDirection: 'row', borderBottom: '1px solid black'}}>
