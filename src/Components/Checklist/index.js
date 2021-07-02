@@ -3,6 +3,8 @@
 
 import Checkbox from '@material-ui/core/Checkbox';
 
+// const pdfIcon = require('../../Pictures/pdfIcon.png');
+
 const Checklist = () => {
 
     // array of strings? array of objects which include strings and a 'checked' boolean saved as state variables? dealer's choice.
@@ -24,7 +26,10 @@ const Checklist = () => {
 
     return(
         <div>
-            <p>Checklist</p>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                <h3>Basic Disaster Supplies Kit </h3> 
+                <img src="https://res.cloudinary.com/bitingrent/image/upload/v1625252142/safespot/safespot-pdfIcon_rtat2b.png" alt="pdfSymbol" />
+            </div>
 
             <div>
                 {

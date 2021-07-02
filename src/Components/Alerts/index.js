@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React/*, { useState }*/ from 'react';
 import SingleAlert from './SingleAlert';
 const sampleHurricane = require('../../Data/hurricane.json');
 console.log(sampleHurricane)
@@ -10,9 +10,21 @@ const Alerts = () => {
     //     sampleHurricane.watch_updates
     // ]);
     const alerts=[
-        sampleHurricane.alerts_summary,
-        sampleHurricane.warning_updates,
-        sampleHurricane.watch_updates
+        {
+            content: sampleHurricane.alerts_summary,
+            type: "alert",
+            color: "#DA4141"
+        },
+        {
+            content: sampleHurricane.warning_updates,
+            type: "warning",
+            color: "yellow"
+        },
+        {
+            content: sampleHurricane.watch_updates,
+            type: "watch",
+            color: "#02C39A"
+        }
     ];
     return(
         <div>
@@ -21,7 +33,9 @@ const Alerts = () => {
                 return(
                     <div key={index}>
                         <SingleAlert
-                            alert={item}
+                            alert={item.content}
+                            type={item.type}
+                            color={item.color}
                         />
                     </div>
                 )
