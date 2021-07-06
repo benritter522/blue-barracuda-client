@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { DistanceMatrixService } from '@react-google-maps/api';
+import { DistanceMatrixService } from '@react-google-maps/api';
 
 import Button from 'react-bootstrap/Button';
 import Map from './Map';
@@ -13,6 +13,7 @@ const LandingPage = () => {
     const [mapLoadError, setMapLoadError] = useState(false);
 
     const [shelters, setShelters] = useState(sampleShelters);
+    
     // uncomment below for live data to be updated by state
     // const [shelters, setShelters] = useState(sampleShelters);
     // const fetchShelters = async () => {
@@ -56,26 +57,31 @@ const LandingPage = () => {
     // }, [userLat, userLng, userLocationStatus]);
     // }, []);
 
-    // shelters.map((item, index) => {
-    //     return(
-    //         <DistanceMatrixService
-    //             options={{
-    //                 destinations: [{lat: item.geometry.y, lng: item.geometry.x}],
-    //                 origins: [{lat: userLat, lng: userLng}],
-    //                 travelMode: "DRIVING",
-    //             }}
-    //             callback = { (response) => {
-    //                 item.distance = response.rows[0].elements[0].distance;
-    //                 item.duration = response.rows[0].elements[0].duration;
-    //                 setShelters([...shelters.slice(0, index), item, ...shelters.slice(index + 1)]);
-    //                 console.log(`item: ${index}`, item);
-    //             }}
-    //         />
-    //     )
-    // })
-    
     return(
         <div>
+            { mapLoaded ? 
+                (
+                    shelters.map((item, index) => {
+                        return(
+                            <div key={item.attributes.SHELTER_ID.toString()}>
+                                <DistanceMatrixService
+                                    options={{
+                                        destinations: [{lat: item.geometry.y, lng: item.geometry.x}],
+                                        origins: [{lat: userLat, lng: userLng}],
+                                        travelMode: "DRIVING",
+                                    }}
+                                    callback = { (response) => {
+                                        item.distance = response.rows[0].elements[0].distance;
+                                        item.duration = response.rows[0].elements[0].duration;
+                                        setShelters([...shelters.slice(0, index), item, ...shelters.slice(index + 1)]);
+                                        // console.log(`item: ${index}`, item);
+                                    }}
+                                />
+                            </div>
+                        )}
+                    )
+                ) : <></>
+            }
             <Map 
                 mapLoaded={mapLoaded}
                 setMapLoaded={setMapLoaded}
@@ -87,6 +93,7 @@ const LandingPage = () => {
                 userLng={userLng} 
                 shelters={shelters}
             />
+                
             <ShelterList 
                 mapLoaded={mapLoaded}
                 mapLoadError={mapLoadError}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DistanceMatrixService } from '@react-google-maps/api';
+// import { DistanceMatrixService } from '@react-google-maps/api';
 import SingleShelter from './SingleShelter';
 
 const ShelterList = (props) => {
@@ -32,19 +32,6 @@ const ShelterList = (props) => {
                 props.shelters.map((item, index) => {
                     return(
                         <div key={item.attributes.SHELTER_ID.toString()}>
-                            <DistanceMatrixService
-                                options={{
-                                    destinations: [{lat: item.geometry.y, lng: item.geometry.x}],
-                                    origins: [{lat: props.userLat, lng: props.userLng}],
-                                    travelMode: "DRIVING",
-                                }}
-                                callback = { (response) => {
-                                    item.distance = response.rows[0].elements[0].distance;
-                                    item.duration = response.rows[0].elements[0].duration;
-                                    // props.setShelters([...props.shelters.slice(0, index), item, ...props.shelters.slice(index + 1)]);
-                                    console.log(`item: ${index}`, item);
-                                }}
-                            />
                             <SingleShelter 
                                 name={item.attributes.SHELTER_NAME}
                                 address={item.attributes.ADDRESS}

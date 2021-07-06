@@ -36,7 +36,9 @@ const MapComponent = (props) => {
     });
 
     const [map, setMap] = useState(null);
-    console.log('map:', map);
+    if(map) {
+        console.log("map loaded")
+    }
     
     const onLoad = React.useCallback(function callback(map) {
         // const bounds = new window.google.maps.LatLngBounds();
