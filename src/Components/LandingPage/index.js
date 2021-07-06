@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DistanceMatrixService } from '@react-google-maps/api';
 
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Map from './Map';
 import ShelterList from '../LandingPage/ShelterList';
 
@@ -102,7 +102,7 @@ const LandingPage = () => {
                 shelters={shelters}
                 setShelters={setShelters}
             />
-            <div>
+            {/* <div>
                 <div>
                     <Button variant="primary">Alerts</Button>
                 </div>
@@ -112,7 +112,7 @@ const LandingPage = () => {
                 <div>
                     <Button variant="primary">Checklist</Button>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
