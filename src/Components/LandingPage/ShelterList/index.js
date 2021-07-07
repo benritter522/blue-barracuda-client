@@ -11,20 +11,25 @@ const ShelterList = (props) => {
                 props.shelters.map((item) => {
                     return(
                         <div key={item.attributes.SHELTER_ID.toString()}>
-                            <SingleShelter 
-                                name={item.attributes.SHELTER_NAME}
-                                address={item.attributes.ADDRESS}
-                                city={item.attributes.CITY}
-                                state={item.attributes.STATE}
-                                zip={item.attributes.ZIP}
-                                latitude={item.geometry.y}
-                                longitude={item.geometry.x} 
-                                distance={item.distance}
-                                duration={item.duration}
-                                postImpactCapacity={item.attributes.POST_IMPACT_CAPACITY}
-                                evacuationCapacity={item.attributes.EVACUATION_CAPACITY}
-                                // pets={item.PET_ACCOMMODATIONS_CODE}
-                            />
+                            {
+                                item.attributes.STATE === 'FL' ?
+                                (
+                                    <SingleShelter 
+                                        name={item.attributes.SHELTER_NAME}
+                                        address={item.attributes.ADDRESS}
+                                        city={item.attributes.CITY}
+                                        state={item.attributes.STATE}
+                                        zip={item.attributes.ZIP}
+                                        latitude={item.geometry.y}
+                                        longitude={item.geometry.x} 
+                                        distance={item.distance}
+                                        duration={item.duration}
+                                        postImpactCapacity={item.attributes.POST_IMPACT_CAPACITY}
+                                        evacuationCapacity={item.attributes.EVACUATION_CAPACITY}
+                                        // pets={item.PET_ACCOMMODATIONS_CODE}
+                                    />
+                                ) : <></>
+                            }
                         </div>
                     )
                 })

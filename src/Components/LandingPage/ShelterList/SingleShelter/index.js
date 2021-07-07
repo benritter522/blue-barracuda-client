@@ -9,7 +9,7 @@ const SingleShelter = (props) => {
                 </p>
                 <p>{props.address}</p>  
                 <p>{props.city}, {props.state} {props.zip}</p>
-                <p style={{fontWeight: 'bold'}}>Capacity: {props.postImpactCapacity == props.evacuationCapacity ? 'SHELTER IS FULL:' : ''} {props.postImpactCapacity} / {props.evacuationCapacity} </p>
+                <p style={{fontWeight: 'bold'}}>Capacity: {props.postImpactCapacity == props.evacuationCapacity ? 'SHELTER IS FULL' : props.postImpactCapacity + ' / ' + props.evacuationCapacity}</p>
             </div>
             <div>
                 <p>{props.distance ? Math.round(props.distance.value*0.000621371) : '...'} Miles</p>
