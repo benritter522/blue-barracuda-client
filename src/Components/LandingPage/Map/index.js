@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, useJsApiLoader, Marker, Circle } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, Circle, InfoWindow } from '@react-google-maps/api';
+
+import SingleShelter from '../ShelterList/SingleShelter';
 
 // const sampleHurricane = require('../../../Data/hurricane.json');
 
@@ -36,10 +38,15 @@ const MapComponent = (props) => {
     });
 
     const [map, setMap] = useState(null);
+    const [selected, setSelected] = useState(null);
+
     if(map) {
         console.log("map loaded")
     }
-    
+
+    const onSelect = item => {
+        setSelected(item);
+    }
     const onLoad = React.useCallback(function callback(map) {
         // const bounds = new window.google.maps.LatLngBounds();
         // map.fitBounds(bounds);
@@ -87,10 +94,35 @@ const MapComponent = (props) => {
                                 <Marker 
                                     position={{lat: item.geometry.y, lng: item.geometry.x}}
                                     icon={{url: 'https://res.cloudinary.com/bitingrent/image/upload/v1625070383/safespot/safespot-shelterMarker_awhbaz.png', scaledSize: {width: 20, height: 20}}}
+                                    onClick={() => onSelect(item)}
+
                                 />
                             </div>
                         )
                     })
+                ) : <></>
+            }
+            {
+                selected ? (
+                    <InfoWindow 
+                        position={{lat: selected.geometry.y, lng: selected.geometry.x}}
+                        clickable={true}
+                        onCloseClick={() => setSelected(null)}
+                    >
+                        <SingleShelter 
+                            name={selected.attributes.SHELTER_NAME}
+                            address={selected.attributes.ADDRESS}
+                            city={selected.attributes.CITY}
+                            state={selected.attributes.STATE}
+                            zip={selected.attributes.ZIP}
+                            latitude={selected.geometry.y}
+                            longitude={selected.geometry.x} 
+                            distance={selected.distance}
+                            duration={selected.duration}
+                            postImpactCapacity={selected.attributes.POST_IMPACT_CAPACITY}
+                            evacuationCapacity={selected.attributes.EVACUATION_CAPACITY}
+                        />
+                    </InfoWindow>
                 ) : <></>
             }
             {
