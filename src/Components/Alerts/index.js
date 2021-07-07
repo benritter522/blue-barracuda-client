@@ -24,19 +24,19 @@ const Alerts = () => {
     }
     const alerts=[
         {
-            content: sampleHurricane.alerts_summary,
+            content: hurricane.alerts_summary,
             type: "alert",
-            color: "#DA4141"
+            color: "#FFAEAE"
         },
         {
-            content: sampleHurricane.warning_updates,
+            content: hurricane.warning_updates,
             type: "warning",
-            color: "yellow"
+            color: "FFE999"
         },
         {
-            content: sampleHurricane.watch_updates,
+            content: hurricane.watch_updates,
             type: "watch",
-            color: "#02C39A"
+            color: "#A1ECB2"
         }
     ];
 

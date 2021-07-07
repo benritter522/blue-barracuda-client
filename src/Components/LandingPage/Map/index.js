@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, Circle } from '@react-google-maps/api';
 
-const sampleHurricane = require('../../../Data/hurricane.json');
+// const sampleHurricane = require('../../../Data/hurricane.json');
 
 const mapContainerStyle = {
     width: '90vw',
@@ -23,7 +23,6 @@ const MapComponent = (props) => {
         try {
             const response = await fetch('https://safespot-flask.herokuapp.com/alerts');
             const data = await response.json();
-            console.log(data);
             setHurricane(data);
         }
         catch(error) {
