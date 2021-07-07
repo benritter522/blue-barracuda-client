@@ -1,7 +1,6 @@
-import React/*, { useState }*/ from 'react';
+import React, { useState, useEffect } from 'react';
 import SingleAlert from './SingleAlert';
 const sampleHurricane = require('../../Data/hurricane.json');
-console.log(sampleHurricane)
 
 const Alerts = () => {
     // const [alerts, setAlerts] = useState([
@@ -9,6 +8,20 @@ const Alerts = () => {
     //     sampleHurricane.warning_updates,
     //     sampleHurricane.watch_updates
     // ]);
+
+    const [hurricane, setHurricane] = useState(sampleHurricane)
+
+    const fetchHurricane = async () => {
+        try {
+            const response = await fetch('https://safespot-flask.herokuapp.com/alerts');
+            const data = await response.json();
+            console.log(data);
+            setHurricane(data);
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
     const alerts=[
         {
             content: sampleHurricane.alerts_summary,
@@ -26,6 +39,10 @@ const Alerts = () => {
             color: "#02C39A"
         }
     ];
+
+    useEffect(() => {
+        fetchHurricane();
+    }, [])
     return(
         <div>
         {

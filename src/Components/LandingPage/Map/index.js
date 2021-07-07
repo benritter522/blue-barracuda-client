@@ -14,21 +14,22 @@ const mapCenter = {
     lng: -84.2807,
     lat: 30.4383
 };
-const circleOptions = {
-    strokeColor: '#FF0000',
-    strokeOpacity: 0.8,
-    strokeWeight: 2,
-    fillColor: '#FF0000',
-    fillOpacity: 0.35,
-    clickable: false,
-    draggable: false,
-    editable: false,
-    visible: true,
-    radius: sampleHurricane.radius*1609.34,
-    zIndex: 1
-}
 
 const MapComponent = (props) => {
+
+    const [hurricane, setHurricane] = useState(null)
+
+    const fetchHurricane = async () => {
+        try {
+            const response = await fetch('https://safespot-flask.herokuapp.com/alerts');
+            const data = await response.json();
+            console.log(data);
+            setHurricane(data);
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
 
     const { isLoaded, loadError } = useJsApiLoader({
         id: 'google-map-script',
@@ -51,7 +52,7 @@ const MapComponent = (props) => {
     }, []);
 
     useEffect(() => {
-        // fetchLocations();
+        fetchHurricane();
         if(isLoaded) {
             props.setMapLoaded(true);
         }
@@ -93,10 +94,25 @@ const MapComponent = (props) => {
                     })
                 ) : <></>
             }
-            <Circle 
-                center={{lat: sampleHurricane.current_latitude, lng: sampleHurricane.current_longitude}}
-                options={circleOptions}
-            />
+            {
+                hurricane ? 
+                <Circle 
+                    center={{lat: hurricane.current_latitude, lng: hurricane.current_longitude}}
+                    options={{
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: '#FF0000',
+                        fillOpacity: 0.35,
+                        clickable: false,
+                        draggable: false,
+                        editable: false,
+                        visible: true,
+                        radius: hurricane.radius*1609.34,
+                        zIndex: 1
+                    }}
+                /> : <></>
+            }
         </GoogleMap>
     ) : <p>Loading...</p>
 }

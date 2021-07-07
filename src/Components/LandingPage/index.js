@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DistanceMatrixService } from '@react-google-maps/api';
 
 // import Button from 'react-bootstrap/Button';
 import Map from './Map';
 import ShelterList from '../LandingPage/ShelterList';
 
-const sampleShelters = require('../../Data/shelters.json');
+// const sampleShelters = require('../../Data/shelters.json');
 
 const LandingPage = () => {
 
     const [mapLoaded, setMapLoaded] = useState(false);
     const [mapLoadError, setMapLoadError] = useState(false);
 
-    const [shelters, setShelters] = useState(sampleShelters);
+    const [shelters, setShelters] = useState([]);
     
-    // uncomment below for live data to be updated by state
-    // const [shelters, setShelters] = useState(sampleShelters);
-    // const fetchShelters = async () => {
-    //     try {
-    //         const response = await fetch('URL'); //backend URL
-    //         const data = await response.json();
-    //         setShelters(data);
-    //     }
-    //     catch(error) {
-    //         console.error(error);
-    //     }
-    // }
+    const fetchShelters = async () => {
+        try {
+            const response = await fetch('https://safespot-flask.herokuapp.com/shelters');
+            const data = await response.json();
+            setShelters(data.features);
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
 
     // Placeholder Florida User Location
     const userLat = 27.76456198936397;
@@ -51,11 +49,11 @@ const LandingPage = () => {
     //     }
     // }
 
-    // useEffect(() => {
-        // getUserLocation();
-        // console.log(userLat, userLng, userLocationStatus);
+    useEffect(() => {
+        fetchShelters();
+        // fetchHurricane();
     // }, [userLat, userLng, userLocationStatus]);
-    // }, []);
+    }, []);
 
     return(
         <div>
@@ -92,6 +90,7 @@ const LandingPage = () => {
                 userLat={userLat} 
                 userLng={userLng} 
                 shelters={shelters}
+                // hurricane={hurricane}
             />
                 
             <ShelterList 
