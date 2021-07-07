@@ -18,6 +18,11 @@ const LandingPage = () => {
         try {
             const response = await fetch('https://safespot-flask.herokuapp.com/shelters');
             const data = await response.json();
+            // const arr = [];
+            // console.log(arr);
+            // data.features.forEach((item, index) => {
+            //     // if(item.)
+            // })
             setShelters(data.features);
         }
         catch(error) {

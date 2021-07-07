@@ -15,7 +15,6 @@ const Alerts = () => {
         try {
             const response = await fetch('https://safespot-flask.herokuapp.com/alerts');
             const data = await response.json();
-            console.log(data);
             setHurricane(data);
         }
         catch(error) {
@@ -31,7 +30,7 @@ const Alerts = () => {
         {
             content: hurricane.warning_updates,
             type: "warning",
-            color: "FFE999"
+            color: "#FFE999"
         },
         {
             content: hurricane.watch_updates,

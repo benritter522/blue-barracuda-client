@@ -21,6 +21,8 @@ const ShelterList = (props) => {
                                 longitude={item.geometry.x} 
                                 distance={item.distance}
                                 duration={item.duration}
+                                postImpactCapacity={item.attributes.POST_IMPACT_CAPACITY}
+                                evacuationCapacity={item.attributes.EVACUATION_CAPACITY}
                                 // pets={item.PET_ACCOMMODATIONS_CODE}
                             />
                         </div>
