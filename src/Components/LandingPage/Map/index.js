@@ -95,7 +95,6 @@ const MapComponent = (props) => {
                                     position={{lat: item.geometry.y, lng: item.geometry.x}}
                                     icon={{url: 'https://res.cloudinary.com/bitingrent/image/upload/v1625070383/safespot/safespot-shelterMarker_awhbaz.png', scaledSize: {width: 20, height: 20}}}
                                     onClick={() => onSelect(item)}
-
                                 />
                             </div>
                         )
@@ -126,7 +125,7 @@ const MapComponent = (props) => {
                 ) : <></>
             }
             {
-                hurricane ? 
+                hurricane && !isNaN(hurricane.current_latitude) && !isNaN(hurricane.current_longitude) ? 
                 <Circle 
                     center={{lat: hurricane.current_latitude, lng: hurricane.current_longitude}}
                     options={{

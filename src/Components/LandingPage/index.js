@@ -18,11 +18,6 @@ const LandingPage = () => {
         try {
             const response = await fetch('https://safespot-flask.herokuapp.com/shelters');
             const data = await response.json();
-            // const arr = [];
-            // console.log(arr);
-            // data.features.forEach((item, index) => {
-            //     // if(item.)
-            // })
             setShelters(data.features);
         }
         catch(error) {
@@ -30,41 +25,53 @@ const LandingPage = () => {
         }
     }
 
+    // add sortSheltersByDistance
+                // const arr = [];
+            // console.log(arr);
+            // data.features.forEach((item, index) => {
+            //     // if(item.)
+            // })
+
     // Placeholder Florida User Location
-    const userLat = 27.76456198936397;
-    const userLng = -82.63390142275888;
+    // const userLat = 27.76456198936397;
+    // const userLng = -82.63390142275888;
 
     // Uncomment below and in useEffect for real user location
+    const [userLat, setUserLat] = useState(null);
+    const [userLng, setUserLng] = useState(null);
+    const [userLocationStatus, setUserLocationStatus] = useState(null);
+    const getUserLocation = () => {
+        console.log('location status', userLocationStatus)
 
-    // const [userLat, setUserLat] = useState(null);
-    // const [userLng, setUserLng] = useState(null);
-    // const [userLocationStatus, setUserLocationStatus] = useState(null);
-    // const getUserLocation = () => {
-    //     if (!navigator.geolocation) {
-    //         setUserLocationStatus('Geolocation is not supported by your browser');
-    //     } else {
-    //         setUserLocationStatus('Locating...');
-    //         navigator.geolocation.getCurrentPosition((position) => {
-    //             setUserLocationStatus(null);
-    //             setUserLat(position.coords.latitude);
-    //             setUserLng(position.coords.longitude);
-    //         }, () => {
-    //             setUserLocationStatus('Unable to retrieve your location');
-    //         });
-    //     }
-    // }
+        if (!navigator.geolocation) {
+            setUserLocationStatus('Geolocation is not supported by your browser');
+        } else {
+            setUserLocationStatus('Locating...');
+            navigator.geolocation.getCurrentPosition((position) => {
+                setUserLocationStatus(null);
+                setUserLat(position.coords.latitude);
+                setUserLng(position.coords.longitude);
+                // added parseFloat to fix lat probles
+                // setUserLat(parseFloat(position.coords.latitude));
+                // setUserLng(parseFloat(position.coords.longitude));
+            }, () => {
+                setUserLocationStatus('Unable to retrieve your location');
+            });
+        }
+    }
 
     useEffect(() => {
         fetchShelters();
-        // fetchHurricane();
-    // }, [userLat, userLng, userLocationStatus]);
-    }, []);
+        getUserLocation();
+    }, [userLat, userLng, userLocationStatus]);
+    // }, []);
 
     return(
         <div>
             { mapLoaded ? 
                 (
                     shelters.map((item, index) => {
+                        console.log(index, 'item geometry', item.geometry)
                         return(
                             <div key={item.attributes.SHELTER_ID.toString()}>
                                 <DistanceMatrixService
@@ -90,8 +97,8 @@ const LandingPage = () => {
                 setMapLoaded={setMapLoaded}
                 mapLoadError={mapLoadError}
                 setMapLoadError={setMapLoadError}
-                // getUserLocation={getUserLocation}
-                // userLocationStatus={userLocationStatus}
+                getUserLocation={getUserLocation}
+                userLocationStatus={userLocationStatus}
                 userLat={userLat} 
                 userLng={userLng} 
                 shelters={shelters}
@@ -106,17 +113,6 @@ const LandingPage = () => {
                 shelters={shelters}
                 setShelters={setShelters}
             />
-            {/* <div>
-                <div>
-                    <Button variant="primary">Alerts</Button>
-                </div>
-                <div>
-                    <Button variant="primary">Ready to Evacuate</Button>
-                </div>
-                <div>
-                    <Button variant="primary">Checklist</Button>
-                </div>
-            </div> */}
         </div>
     )
 }
